@@ -11,9 +11,9 @@ namespace Roulette
     public class Roulette
     {
         [BsonId]
-        private ObjectId Id { get; set; }        
+        public ObjectId Id { get; set; }        
         [BsonIgnore]
-        public string Identificator { get =>Id.ToString();}
+        public string Identificator { get => Id.ToString(); set { Id = ObjectId.Parse(value); } }
         public DateTime Date { get; set; }      
         public Boolean State { get; set; }
         [BsonRequired]
@@ -22,7 +22,7 @@ namespace Roulette
         public string User { get => this.UserCreator.ToString(); set { UserCreator = ObjectId.Parse(value); } }
         public Roulette()
         {
-            State = true;
+            State = false;
         }
     }
 }

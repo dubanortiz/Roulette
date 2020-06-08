@@ -16,7 +16,7 @@ namespace Roulette.Model
         [BsonIgnore]
         public string Identificator { get => Id.ToString(); }
         [BsonRequired]
-        private ObjectId Roulette { get; set; }
+        public ObjectId Roulette { get; set; }
         [BsonIgnore]
         public String RouletteOwner { get => this.Roulette.ToString(); set { Roulette = ObjectId.Parse(value); } }
         //[MaxLength(1000)]
@@ -37,5 +37,7 @@ namespace Roulette.Model
         {
             Date = DateTime.Now;
         }
+
+        
     }
 }

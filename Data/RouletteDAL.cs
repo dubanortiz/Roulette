@@ -42,9 +42,49 @@ namespace Roulette
             return response;
         }
 
-        public List<Roulette> GetRoulettes()
+        public List<Roulette> GetAllRoulettes()
         {
             return  _database.GetCollection<Roulette>("Roulette").Find(new BsonDocument()).ToList();
+        }
+        public List<Roulette> GetRoulettesOpen()
+        {
+            return _database.GetCollection<Roulette>("Roulette").Find(x =>x.State==true).ToList();
+        }
+        public Response ActivateRoulette(string rouleteId)
+        {
+            try
+            {
+                Roulette Old = _database.GetCollection<Roulette>("Roulette").Find(x => x.Id == ObjectId.Parse(rouleteId)).Single();
+                Old.State = true;
+                _database.GetCollection<Roulette>("Roulette").ReplaceOne(x => x.Id == Old.Id, Old);
+            }
+            catch(Exception e)
+            {
+                response.Status = "Error";
+                response.Message = "Error al Modificar el estado de la ruleta"+e;
+            }
+            
+            return response;
+        }
+
+        public Response validateRoulette(string IdRoulette)
+        {
+            try
+            {
+                Roulette roulette = _database.GetCollection<Roulette>("Roulette").Find(x => x.Id == ObjectId.Parse(IdRoulette)).Single();
+                if (!roulette.State)
+                {
+                    response.Status = "Error";
+                    response.Message = "Esta ruleta se encuentra Desactivada";
+                }
+            }
+            catch (Exception e)
+            {
+                response.Status = "Error";
+                response.Message = "Error al Consultar la ruleta"+ e;
+            }
+
+            return response;
         }
     }
 }

@@ -15,10 +15,16 @@ namespace Roulette.Controllers
     public class RouletteController : ControllerBase
     {
         // GET: <Bet>
-        [HttpGet]
+        [HttpGet("all")]
         public IEnumerable<Roulette> Get()
         {
-            return new RouletteDAL().GetRoulettes();
+            return new RouletteDAL().GetAllRoulettes();
+        }
+        // GET: <Bet>
+        [HttpGet("Open")]
+        public IEnumerable<Roulette> GetRouletteOpen()
+        {
+            return new RouletteDAL().GetRoulettesOpen();
         }
 
         // POST <Bet>
@@ -26,6 +32,12 @@ namespace Roulette.Controllers
         public Response CreatedRoulette([FromBody] User user)
         {
             return new RouletteDAL().CreateNewRoulette(user);
+        }
+        // POST <Bet>
+        [HttpPost("Activate")]
+        public Response ActivateRoulette([FromBody] Roulette roulette)
+        {
+            return new RouletteDAL().ActivateRoulette(roulette.Identificator);
         }
     }
 }
