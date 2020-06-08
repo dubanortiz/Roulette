@@ -19,9 +19,11 @@
     },
     "ApiRoulette": {
       "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "weatherforecast",
       "environmentVariables": {
+        "Host": "localhost",
+        "Port": "27017",
+        "UserName": "mongo",
+        "Password": "12345678910",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"

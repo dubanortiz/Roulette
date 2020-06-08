@@ -10,7 +10,11 @@ namespace Roulette.Data
     {
         public IMongoDatabase ConectionDatabase()
         {
-            var client = new MongoClient("mongodb://localhost:27017");
+            string host = @Environment.GetEnvironmentVariable("Host");
+            string port = @Environment.GetEnvironmentVariable("Port");
+            string userName = @Environment.GetEnvironmentVariable("UserName");
+            string password = @Environment.GetEnvironmentVariable("Password");
+            var client = new MongoClient("mongodb://"+ userName +":"+ password +"@"+ host +":"+ port );
             var database = client.GetDatabase("Roulette");
 
             return database;
