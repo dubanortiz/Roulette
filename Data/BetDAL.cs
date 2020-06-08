@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace Roulette.Data
 {
     public class BetDAL
@@ -17,7 +16,6 @@ namespace Roulette.Data
         {
             _database = new Data.Conection().ConectionDatabase();
         }
-
         public Response CreateNewBet(Bet newBet) {
             Response validateBet = ValidateBet(newBet);
             if (validateBet.Status == "OK")
@@ -32,7 +30,6 @@ namespace Roulette.Data
             }
             return response;
         }
-
         public Response ValidateBet(Bet bet)
         {
             Response responseValidationRoulette = new RouletteDAL().validateRoulette(bet.RouletteOwner);
@@ -56,6 +53,7 @@ namespace Roulette.Data
                     response.Status = "Error";
                 }
             }
+
             return response;
         }
         public IEnumerable<Bet> GetBets(){

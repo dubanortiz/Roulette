@@ -31,13 +31,10 @@ namespace Roulette.Model
         [AllowNull, BsonRequired, ]
         public string Color {get;set;}
         [BsonIgnore]
-        public bool Validate { get; set; }
-        
+        public bool Validate { get; set; }       
         public Bet()
         {
             Date = DateTime.Now;
-        }
-
-        
+        }        
     }
 }

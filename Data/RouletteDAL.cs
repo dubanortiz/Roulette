@@ -41,7 +41,6 @@ namespace Roulette
 
             return response;
         }
-
         public List<Roulette> GetAllRoulettes()
         {
             return  _database.GetCollection<Roulette>("Roulette").Find(new BsonDocument()).ToList();
@@ -66,7 +65,6 @@ namespace Roulette
             
             return response;
         }
-
         public Response validateRoulette(string IdRoulette)
         {
             try

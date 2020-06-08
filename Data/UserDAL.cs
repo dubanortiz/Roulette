@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace Roulette.Data
 {
     public class UserDAL
@@ -14,7 +13,6 @@ namespace Roulette.Data
         {
             _database = new Data.Conection().ConectionDatabase();
         }
-
         public Response ValidateIdUser(User user)
         {
             var Users = _database.GetCollection<User>("User");
