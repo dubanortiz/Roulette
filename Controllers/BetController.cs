@@ -27,5 +27,12 @@ namespace Roulette.Controllers
         {
             return new BetDAL().GetBets();
         }
+
+        // GET BetController
+        [HttpGet("{Id}")]
+        public IEnumerable<Bet> GetById(string Id)
+        {
+            return new BetDAL().GetBets(Id);
+        }
     }
 }
